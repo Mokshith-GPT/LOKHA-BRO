@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   debug-build:
@@ -33,3 +33,12 @@ jobs:
           path: app/build/outputs/apk/debug/*.apk
           if-no-files-found: error
           retention-days: 14
+
+      - name: Publish installable review APK
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cp app/build/outputs/apk/debug/app-debug.apk LOKHA-BRO-review.apk
+          gh release view keyboard-preview >/dev/null 2>&1 || gh release create keyboard-preview --target "$GITHUB_SHA" --title "LOKHA BRO Keyboard Preview" --notes "Experimental Android keyboard with >commands and configurable OpenAI key. Debug build; not production signed. Uninstall previous preview if signature differs." --prerelease
+          gh release upload keyboard-preview LOKHA-BRO-review.apk --clobber
