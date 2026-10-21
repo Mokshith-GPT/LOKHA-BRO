@@ -7,7 +7,7 @@ import java.net.HttpURLConnection
 import java.net.URL
 
 object Commands {
- private val pattern=Regex("""(?s)^(.*?)(?:\\s+)(>(?:fix|improve|gen-z|formal|casual|professional|corporate(?:-english)?|shorten|expand|undo|redo|trans-[\\p{L}-]+))\\s*$""",RegexOption.IGNORE_CASE)
+ private val pattern=Regex("""(?s)^(.*?)(?:\s+)(>(?:fix|improve|gen-z|formal|casual|professional|corporate(?:-english)?|shorten|expand|undo|redo|trans-[\p{L}-]+))\s*$""",RegexOption.IGNORE_CASE)
  fun parse(text:String):Pair<String,String>? {
   val match=pattern.matchEntire(text) ?: return null
   val body=match.groupValues[1].trimEnd()
