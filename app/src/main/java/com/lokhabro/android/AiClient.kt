@@ -6,7 +6,7 @@ import org.json.JSONObject
 import java.net.HttpURLConnection
 import java.net.URL
 
-object Commands {
+ private val suffix = Regex("""(?is)^(.*?)(?:\s+)(>(?:fix|improve|gen-z|formal|casual|professional|corporate(?:-english)?|short|shorten|expand|trans-[\p{L}-]+)|\?translate:[a-z]{2,3})\s*$""")
  private val suffix = Regex("""(?is)^(.*?)(?:\\s+)(>(?:fix|improve|gen-z|formal|casual|professional|corporate(?:-english)?|short|shorten|expand|trans-[\\p{L}-]+)|\\?translate:[a-z]{2,3})\\s*$""")
  fun parse(text:String):Pair<String,String>? {
   val m=suffix.matchEntire(text) ?: return null
