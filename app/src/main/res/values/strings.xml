@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">LOKHA BRO</string>
+ <string name="app_name">LOKHA BRO</string>
+ <string name="accessibility_description">Detects explicit LOKHA BRO rewrite commands at the end of text fields and replaces the text with the requested transformation.</string>
 </resources>
