@@ -76,7 +76,7 @@ class LokhaKeyboardService: InputMethodService() {
   if(prefs.getString("api_key","").isNullOrBlank()){message?.text="Open LOKHA BRO app to set API key";return}
   working=true;message?.text="Upgrading text…"
   scope.launch {
-   val result=withContext(Dispatchers.IO){ AiClient.rewrite(prefs,original,command) }
+   val result=withContext(Dispatchers.IO){ AiClient.rewrite(this@LokhaKeyboardService,original,command) }
    result.onSuccess { updated ->
     // Avoid overwriting if user continued typing or changed the field during the request.
     if(currentInputConnection===ic && ic.getTextBeforeCursor(12000,0)?.toString()==before) {
