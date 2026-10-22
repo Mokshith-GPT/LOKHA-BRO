@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-<uses-permission android:name="android.permission.INTERNET"/>
-<application android:allowBackup="false" android:icon="@drawable/ic_lokha_bro" android:label="@string/app_name" android:supportsRtl="true" android:theme="@android:style/Theme.Material.Light.NoActionBar">
-<activity android:name=".MainActivity" android:exported="true"><intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter></activity>
-<service android:name=".LokhaKeyboardService" android:label="LOKHA BRO" android:permission="android.permission.BIND_INPUT_METHOD" android:exported="true"><intent-filter><action android:name="android.view.InputMethod"/></intent-filter><meta-data android:name="android.view.im" android:resource="@xml/lokha_method"/></service>
-</application>
+ <uses-permission android:name="android.permission.INTERNET"/>
+ <application android:allowBackup="false" android:icon="@drawable/ic_lokha_bro" android:label="@string/app_name" android:supportsRtl="true" android:theme="@android:style/Theme.Material.Light.NoActionBar">
+  <activity android:name=".MainActivity" android:exported="true"><intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter></activity>
+  <activity android:name=".ProcessTextActivity" android:exported="true" android:label="Rewrite with LOKHA BRO"><intent-filter><action android:name="android.intent.action.PROCESS_TEXT"/><category android:name="android.intent.category.DEFAULT"/><data android:mimeType="text/plain"/></intent-filter></activity>
+  <service android:name=".AssistantService" android:label="LOKHA BRO" android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE" android:exported="true"><intent-filter><action android:name="android.accessibilityservice.AccessibilityService"/></intent-filter><meta-data android:name="android.accessibilityservice" android:resource="@xml/lokha_accessibility"/></service>
+ </application>
 </manifest>
